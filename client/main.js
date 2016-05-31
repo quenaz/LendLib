@@ -3,13 +3,16 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
-lists = new Mongo.Collection("lists");
+lists = new Meteor.Collection("lists");
 
 if (Meteor.isClient) {
   console.log("in Line Client");
 
   // We are declaring the adding_category flag
   Session.set('adding_category', false);
+
+  // counter starts at 0
+  Session.setDefault('counter', 0);
 
   /*
   Template.hello.onCreated(function helloOnCreated() {
@@ -73,6 +76,7 @@ if (Meteor.isClient) {
   /// Generic Helper Functions ///
   // this function puts our cursor where it needs to be.
   function focusText( i, val ) {
+    //if( i.focus() === "" ) 
     i.focus();
     i.value = val ? val : "";
     i.select();
@@ -131,7 +135,7 @@ if (Meteor.isClient) {
       return (Session.equals('list_adding', true));
     },
     lendee_editing: function() {
-      reutrn (Session.equals('lendee_input', this.Name));
+      return (Session.equals('lendee_input', this.Name));
     }
   });
 
