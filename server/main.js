@@ -7,21 +7,19 @@ Meteor.startup(() => {
 
   lists.allow({
     'insert': function( userId, doc ) {
-      if( !userId && !doc)
-        return false;
-      else {
-        console.log("UserId: " + userId);
-        return true;
-      }
+      return true;
     },
     'update': function( userId, doc ) {
-      if( !userId && !doc )
-        return false;
-      else {
-        console.log("UserId: " + userId);
-        return true;
-      }
+      return true;
     }
+  });
+
+  Meteor.publish("Categories", function() {
+    return lists.find( {}, { fields: { Category : 1 }});
+  });
+
+  Meteor.publish("listdetails", function( category_id ) {
+    return lists.find({ _id : category_id });
   });
 
 }); // Meteor.startup()

@@ -7,11 +7,17 @@ lists = new Mongo.Collection("lists");
 
 console.log("in Line Client");
 
+Meteor.subscribe("Categories");
+
+Tracker.autorun( function() {
+  Meteor.subscribe("listdetails", Session.get('current_list'));
+});
+
 // We are declaring the adding_category flag
 Session.set('adding_category', false);
 
 // counter starts at 0
-Session.setDefault('counter', 0);
+//Session.setDefault('counter', 0);
 
 /*
 Template.hello.onCreated(function helloOnCreated() {
