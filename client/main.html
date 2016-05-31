@@ -3,6 +3,9 @@
 </head>
 
 <body>
+  <div class="container">
+    {{> loginButtons }}
+  </div>
   <div id="lendlib" class="container">
     <div id="categories-container" class="container">
       {{> categories}}
@@ -10,12 +13,14 @@
     <div id="list">
       {{> list }}
     </div>
+    <div class="madewith pull-right">
+      Made with <img src="Meteor-logo.png" alt="">
+    </div>
   </div>
 </body>
 
 <template name="categories">
-  <h2 class="title">categories</h2>
-  <div class="title">my stuff</div>
+  <h2 class="title">my stuff</h2>
   <div id="categories" class="btn-group">
     {{#if new_cat}}
       <div class="category form-group" id="newCat">
